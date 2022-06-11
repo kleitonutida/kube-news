@@ -41,7 +41,7 @@ kind: Deployment
 metadata:
   name: kubenew
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: kubenew
@@ -49,6 +49,10 @@ spec:
     metadata:
       labels:
         app: kubenew
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
       - name: kubenew
